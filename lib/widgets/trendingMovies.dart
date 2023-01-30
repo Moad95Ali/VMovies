@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:sizer/sizer.dart';
 import 'package:vmovies/widgets/descriptions.dart';
 
 import 'package:flutter/material.dart';
@@ -40,14 +41,14 @@ class TrendingMoviesState extends State<TrendingMovies> {
               'Trending Movies',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 15.sp,
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-              height: 300,
+              height: 34.h,
               child: CarouselSlider.builder(
                 itemCount: widget.trending.length,
                 itemBuilder: (context, index, realIndex) {
@@ -62,7 +63,8 @@ class TrendingMoviesState extends State<TrendingMovies> {
                                             widget.trending[index]
                                                 ['backdrop_path'],
                                     descripthion: widget.trending[index]
-                                        ['overview'],
+                                            ['overview']
+                                        .toString(),
                                     launch_on: widget.trending[index]
                                         ['release_date'],
                                     posterurl:
@@ -74,17 +76,16 @@ class TrendingMoviesState extends State<TrendingMovies> {
                                     name: widget.trending[index]['title']
                                         .toString(),
                                     image: 'https://image.tmdb.org/t/p/w500' +
-                                        widget.trending[index]['poster_path']
-                                            .toString(),
+                                        widget.trending[index]['poster_path'],
                                   ))));
                     },
                     child: Container(
-                      width: 260,
+                      width: 66.w,
                       child: Column(
                         children: [
                           Container(
-                            height: 300,
-                            width: 600,
+                            height: 34.h,
+                            width: 60.w,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 boxShadow: const [
@@ -108,7 +109,7 @@ class TrendingMoviesState extends State<TrendingMovies> {
                   );
                 },
                 options: CarouselOptions(
-                  height: 380.0,
+                  height: 50.h,
                   enlargeCenterPage: true,
                   autoPlay: true,
                   aspectRatio: 16 / 9,

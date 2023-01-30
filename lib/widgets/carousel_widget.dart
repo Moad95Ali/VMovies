@@ -1,27 +1,30 @@
 import 'dart:async';
+import 'package:sizer/sizer.dart';
+import 'package:vmovies/widgets/descriptions.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sizer/sizer.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 import 'package:vmovies/HomePage.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../styles/textStyle.dart';
 
-class TopRated extends StatefulWidget {
-  final List topRated;
-  const TopRated({
+class CarouselWidget extends StatefulWidget {
+  final List items;
+  final String title;
+  const CarouselWidget({
     Key? key,
-    required this.topRated,
+    required this.items,
+    required this.title,
   }) : super(key: key);
 
   @override
-  State<TopRated> createState() => TopRatedState();
+  State<CarouselWidget> createState() => CarouselWidgetState();
 }
 
-class TopRatedState extends State<TopRated> {
+class CarouselWidgetState extends State<CarouselWidget> {
   @override
   void initState() {
     super.initState();
@@ -37,7 +40,7 @@ class TopRatedState extends State<TopRated> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              'Top Rated',
+              widget.title,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 15.sp,
@@ -47,19 +50,43 @@ class TopRatedState extends State<TopRated> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
-              height: 300,
+              height: 34.h,
               child: CarouselSlider.builder(
-                itemCount: widget.topRated.length,
+                itemCount: widget.items.length,
                 itemBuilder: (context, index, realIndex) {
                   return InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => Description(
+                                    bannerurl:
+                                        'https://image.tmdb.org/t/p/w500' +
+                                            widget.items[index]
+                                                ['backdrop_path'],
+                                    descripthion: widget.items[index]
+                                            ['overview']
+                                        .toString(),
+                                    launch_on: widget.items[index]
+                                        ['release_date'],
+                                    posterurl:
+                                        'https://image.tmdb.org/t/p/w500' +
+                                            widget.items[index]['poster_path'],
+                                    vote: widget.items[index]['vote_average']
+                                        .toString(),
+                                    name:
+                                        widget.items[index]['title'].toString(),
+                                    image: 'https://image.tmdb.org/t/p/w500' +
+                                        widget.items[index]['poster_path'],
+                                  ))));
+                    },
                     child: Container(
-                      width: 260,
+                      width: 66.w,
                       child: Column(
                         children: [
                           Container(
-                            height: 300,
-                            width: 600,
+                            height: 34.h,
+                            width: 60.w,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 boxShadow: const [
@@ -72,8 +99,7 @@ class TopRatedState extends State<TopRated> {
                                 image: DecorationImage(
                                   image: NetworkImage(
                                       'https://image.tmdb.org/t/p/w500' +
-                                          widget.topRated[index]
-                                              ['poster_path']),
+                                          widget.items[index]['poster_path']),
                                   fit: BoxFit.cover,
                                 )),
                           ),
@@ -85,7 +111,7 @@ class TopRatedState extends State<TopRated> {
                 options: CarouselOptions(
                   height: 50.h,
                   enlargeCenterPage: true,
-                  autoPlay: false,
+                  autoPlay: true,
                   aspectRatio: 16 / 9,
                   autoPlayCurve: Curves.fastOutSlowIn,
                   enableInfiniteScroll: true,

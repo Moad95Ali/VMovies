@@ -34,14 +34,26 @@ dependencies:
   tmdb_api: 
   google_fonts:  
   carousel_slider: ^4.2.1
+  flutter_launcher_icons: ^0.11.0
   
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  sizer: ^2.0.15
+  animated_splash_screen: ^1.3.0
+  flutter_gif: ^0.0.4
 
 dev_dependencies:
+  flutter_launcher_icons: "^0.11.0"
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "images/VMovies.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  
   flutter_test:
     sdk: flutter
 

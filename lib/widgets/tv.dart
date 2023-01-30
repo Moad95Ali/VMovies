@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 import 'package:vmovies/HomePage.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -39,7 +40,7 @@ class TvShowState extends State<TvShow> {
               'TV Show',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 20,
+                fontSize: 15.sp,
               ),
             ),
           ),
@@ -81,7 +82,7 @@ class TvShowState extends State<TvShow> {
                   );
                 },
                 options: CarouselOptions(
-                  height: 380.0,
+                  height: 50.h,
                   enlargeCenterPage: true,
                   autoPlay: false,
                   aspectRatio: 16 / 9,

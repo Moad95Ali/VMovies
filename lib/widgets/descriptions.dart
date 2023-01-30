@@ -17,6 +17,14 @@ class Description extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(name);
+    print(descripthion);
+    print(bannerurl);
+    print(posterurl);
+    print(vote);
+    print(launch_on);
+    print(image);
+
     return Scaffold(
       backgroundColor: Color(0xFF131738),
       body: Container(
@@ -83,7 +91,6 @@ class Description extends StatelessWidget {
                 width: 150,
                 height: 155,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFFE0078).withOpacity(0.45),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Padding(
@@ -95,11 +102,12 @@ class Description extends StatelessWidget {
                 ),
               ),
             ),
-            Container(
-              width: 200,
-              height: 300,
-              child: Image.network(image),
-            )
+            // if (image != null)
+            //   Container(
+            //     width: 200,
+            //     height: 300,
+            //     child: Image.network(image),
+            //   )
           ],
         ),
       ),
