@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:vmovies/widgets/descriptions.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -10,18 +9,18 @@ import 'package:vmovies/HomePage.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../styles/textStyle.dart';
 
-class TrendingMovies extends StatefulWidget {
-  final List trending;
-  const TrendingMovies({
+class TvShow extends StatefulWidget {
+  final List tvShow;
+  const TvShow({
     Key? key,
-    required this.trending,
+    required this.tvShow,
   }) : super(key: key);
 
   @override
-  State<TrendingMovies> createState() => TrendingMoviesState();
+  State<TvShow> createState() => TvShowState();
 }
 
-class TrendingMoviesState extends State<TrendingMovies> {
+class TvShowState extends State<TvShow> {
   @override
   void initState() {
     super.initState();
@@ -37,7 +36,7 @@ class TrendingMoviesState extends State<TrendingMovies> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              'Trending Movies',
+              'TV Show',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -49,35 +48,10 @@ class TrendingMoviesState extends State<TrendingMovies> {
             child: Container(
               height: 300,
               child: CarouselSlider.builder(
-                itemCount: widget.trending.length,
+                itemCount: widget.tvShow.length,
                 itemBuilder: (context, index, realIndex) {
                   return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => Description(
-                                    bannerurl:
-                                        'https://image.tmdb.org/t/p/w500' +
-                                            widget.trending[index]
-                                                ['backdrop_path'],
-                                    descripthion: widget.trending[index]
-                                        ['overview'],
-                                    launch_on: widget.trending[index]
-                                        ['release_date'],
-                                    posterurl:
-                                        'https://image.tmdb.org/t/p/w500' +
-                                            widget.trending[index]
-                                                ['poster_path'],
-                                    vote: widget.trending[index]['vote_average']
-                                        .toString(),
-                                    name: widget.trending[index]['title']
-                                        .toString(),
-                                    image: 'https://image.tmdb.org/t/p/w500' +
-                                        widget.trending[index]['poster_path']
-                                            .toString(),
-                                  ))));
-                    },
+                    onTap: () {},
                     child: Container(
                       width: 260,
                       child: Column(
@@ -97,8 +71,7 @@ class TrendingMoviesState extends State<TrendingMovies> {
                                 image: DecorationImage(
                                   image: NetworkImage(
                                       'https://image.tmdb.org/t/p/w500' +
-                                          widget.trending[index]
-                                              ['poster_path']),
+                                          widget.tvShow[index]['poster_path']),
                                   fit: BoxFit.cover,
                                 )),
                           ),
@@ -110,11 +83,10 @@ class TrendingMoviesState extends State<TrendingMovies> {
                 options: CarouselOptions(
                   height: 380.0,
                   enlargeCenterPage: true,
-                  autoPlay: true,
+                  autoPlay: false,
                   aspectRatio: 16 / 9,
                   autoPlayCurve: Curves.fastOutSlowIn,
                   enableInfiniteScroll: true,
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
                   viewportFraction: 0.6,
                 ),
               ),
